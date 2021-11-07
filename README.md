@@ -1,4 +1,4 @@
-# INSTALL data_utils
+# INSTALL, UPGRADE AND UNINSTALL data_utils
 
 sudo python3 -m pip install --upgrade pip setuptools wheel
 
@@ -10,7 +10,6 @@ cd data_utils
 
 pip3 install . 
 
+pip install --upgrade .
 
-
-
-
+pip3 uninstall data_utils
