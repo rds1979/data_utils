@@ -18,9 +18,9 @@ class S3Client:
         aws_access_key_id = self.settings['aws_access_key_id'],
         aws_secret_access_key = self.settings['aws_secret_access_key'])
 
-    def get_info_from_s3(staging_dir: str) -> list:
+    def get_info_from_s3(self, staging_dir: str) -> list:
         try:
-            bucket = s3resource.Bucket(self.bucket_name)
+            bucket = self.resource.Bucket(self.bucket_name)
             s3files = []
             for s3unit in bucket.objects.filter(Prefix=staging_dir):
                 s3file = s3unit.key
@@ -28,5 +28,5 @@ class S3Client:
                 result = (s3files)
             return result
         except botocore.exceptions.ClientError as err:
-            sys.stderr.write(f"{err} Module: '{__name__}'. File: '{__file__}'")
+            logging.err(f"{err} Module: '{__name__}'. File: '{__file__}'")
             sys.exit(2)
