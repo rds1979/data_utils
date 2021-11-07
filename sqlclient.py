@@ -3,11 +3,16 @@
 
 import sys
 import logging
-import psycopg2
-import psycopg2.extras as pcge
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', \
                     datefmt='%Y-%m-%d %H:%M:%S', filemode='w', level=logging.INFO)
+
+try:
+    import psycopg2, psycopg2.extras as pcge
+except ImportError as err:
+    sys.stderr.write(f"Error {err} occured in module {__name__} file: {__file__}")
+    sys.exit(1)
+    
 
 class SQLClient:
     '''Description SQLClient class'''
@@ -46,4 +51,3 @@ class SQLClient:
             self.curs.close()
             self.conn.close()
             logging.info(f"Closed connect to database '{self.settings['database']}'on host '{self.settings['host']}'")
-
