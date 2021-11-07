@@ -3,10 +3,16 @@
 
 import sys
 import logging
-import yaml
+
+try:
+    import yaml
+except ImportError as err:
+    sys.stderr.write(f"Error {err} occured in module {__name__} file: {__file__}")
+    sys.exit(1)
 
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', \
                     datefmt='%Y-%m-%d %H:%M:%S', filemode='w', level=logging.INFO)
+
 
 class FileManager:
     '''Description FileManager class'''
