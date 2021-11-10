@@ -10,6 +10,6 @@ cd data_utils
 
 pip3 install . 
 
-pip install --upgrade .
+pip3 install --upgrade .
 
 pip3 uninstall data_utils
