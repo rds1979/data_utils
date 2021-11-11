@@ -1,22 +1,22 @@
 WITH cte_null AS(
 SELECT
-	COUNT(*) "rows", event_time_date "evtime"
-FROM amplitude.events 
-WHERE user_properties___currentchildagecategory IS NULL
-	AND event_time_date BETWEEN '2021-11-04' AND '2021-11-08'
+	COUNT(*) "rows", event_date "evtime"
+FROM myschema.mytable 
+WHERE count_null_rows_field IS NULL
+	AND event_date BETWEEN '2021-11-04' AND '2021-11-08'
 GROUP BY 2
 ), cte_not_null AS(
 SELECT 
-	COUNT(*) "rows", event_time_date "evtime"
-FROM amplitude.events
-WHERE user_properties___currentchildagecategory IS NOT NULL
-	AND event_time_date BETWEEN '2021-11-04' AND '2021-11-08'
+	COUNT(*) "rows", event_date "evtime"
+FROM myschema.mytable
+WHERE count_not_null_rows_field IS NOT NULL
+	AND event_date BETWEEN '2021-11-04' AND '2021-11-08'
 GROUP BY 2
 ), cte_all AS(
 SELECT
-	COUNT(*) "rows", event_time_date "evtime"
-FROM amplitude.events 
-	WHERE event_time_date BETWEEN '2021-11-04' AND '2021-11-08'
+	COUNT(*) "rows", event_date "evtime"
+FROM myschema.mytable 
+	WHERE event_date BETWEEN '2021-11-04' AND '2021-11-08'
 GROUP BY 2
 ) SELECT 
 	cn.rows "null_rows",
