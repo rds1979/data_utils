@@ -26,7 +26,7 @@ class S3Client:
                 s3file = s3unit.key
                 s3files.append(s3file)
                 result = (s3files)
-            return result
+            return result, bucket
         except botocore.exceptions.ClientError as err:
             logging.err(f"{err} Module: '{__name__}'. File: '{__file__}'")
             sys.exit(2)
