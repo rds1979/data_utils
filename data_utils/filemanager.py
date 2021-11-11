@@ -7,7 +7,6 @@ import logging
 try:
     import yaml
     from configparser import ConfigParser
-    from configparser import NoSectionError
 except ImportError as err:
     sys.stderr.write(f"Error {err} occured in module {__name__} file: {__file__}")
     sys.exit(1)
@@ -45,17 +44,16 @@ class FileManager:
                 sys.exit(2)
 
     def read_ini_config(self, file: str, section: str) -> dict:
-        try:
-            configuration = {}
-            parser = ConfigParser()
-            parser.read(file)
-            if parser.has_section(section):
-                params = parser.items(section)
-                for param in params:
-                    configuration[param[0]] = param[1]
-                return configuration
-        except NoSectionError as err:
-            logging.error(f"The file {self.file} hasn't section {section}")
+        configuration = {}
+        parser = ConfigParser()
+        parser.read(file)
+        if parser.has_section(section):
+            params = parser.items(section)
+            for param in params:
+                configuration[param[0]] = param[1]
+            return configuration
+        else:
+            logging.error(f"The file {file} hasn't section {section}")
             sys.exit(2)
 
 
