@@ -40,7 +40,7 @@ class FileManager:
                 settings = fd[section]
                 return settings
             else:
-                logging.error(f"Section {section} not find in the file {file}")
+                logging.error(f"The file {file} hasn't section {section}")
                 sys.exit(2)
 
     def read_ini_config(self, file: str, section: str) -> dict:
