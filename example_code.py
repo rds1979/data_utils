@@ -25,8 +25,8 @@ def processing(yaml_config: str, ini_config: str) -> None:
 
     s3settings = fm.read_yaml_config(yaml_config, 's3')
     s3cli = S3Client(s3settings)
-    s3files = s3cli.get_info_from_s3('zip')
-    print(s3files)
+    s3files, bucket = s3cli.get_info_from_s3('zip')
+    print(bucket)
 
 if __name__ == '__main__':
     yaml_config, ini_config = 'config.yaml', 'config.ini'
