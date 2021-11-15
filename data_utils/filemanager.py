@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
+import os
 import sys
 import logging
 
@@ -56,7 +57,15 @@ class FileManager:
             logging.error(f"The file {file} hasn't section {section}")
             sys.exit(2)
 
+    def delete_file(self, file: str) -> None:
+        try:
+            os.remove(file)
+        except OSError as err:
+            logging.error(f"Can't delelete file '{file}', occured error: {err}")
+            sys.exit(2)
+
+
 
 if __name__ == '__main__':
     print(f"You are ran content from '{__file__}' data_utils library")
-    
+
