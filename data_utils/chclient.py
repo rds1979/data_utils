@@ -14,7 +14,7 @@ except ImportError as err:
     logging.error(f"Error {err} occured in module {__name__} file: {__file__}")
     sys.exit(1)
 
-class ClickClient:
+class CHClient:
     '''Description SQLClient class'''
     def __init__(self, settings: dict) -> None:
         self.host = settings['host']
